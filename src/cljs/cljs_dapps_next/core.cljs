@@ -17,11 +17,12 @@
 
 (defn start []
   (reset! system (ig/init (read-config "resources/config.edn")))
-  (re-frame/clear-subscription-cache!)
+  (re-frame/dispatch-sync [::events/initialize-system @system])
   (reagent/render [views/main-panel]
                   (.getElementById js/document "app")))
 
 (defn stop []
+  (re-frame/clear-subscription-cache!)
   (ig/halt! @system)
   (reset! system nil))
 
@@ -30,7 +31,7 @@
   (start))
 
 (defn init []
-  (dev-setup)
   (routes/app-routes)
   (re-frame/dispatch-sync [::events/initialize-db])
+  (dev-setup)
   (start))

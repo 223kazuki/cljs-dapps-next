@@ -2,17 +2,20 @@
   (:require
    [re-frame.core :as re-frame]
    [cljs-dapps-next.subs :as subs]
-   ))
+   ["semantic-ui-react" :as ui]))
 
 
 ;; home
 
 (defn home-panel []
-  (let [name (re-frame/subscribe [::subs/name])]
+  (let [name (re-frame/subscribe [::subs/name])
+        system (re-frame/subscribe [::subs/system])]
+    (println @system)
     [:div
      [:h1 (str "Hello from " @name ". This is the Home Page.")]
 
      [:div
+      [:> ui/Button {:on-click (fn [] (println "???"))} "Test"]
       [:a {:href "#/about"}
        "go to About Page"]]
      ]))

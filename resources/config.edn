@@ -1,3 +1,7 @@
 {:cljs-dapps-next.module.web3/web3
- {:network-id 1533140371286
+ {}
+
+ :cljs-dapps-next.module.web3/contract
+ {:web3 #ig/ref :cljs-dapps-next.module.web3/web3
+  :network-id 1533140371286
   :contract #json "contract/build/contracts/MetaCoin.json"}}
